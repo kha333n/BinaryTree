@@ -1,18 +1,18 @@
 #pragma once
 #include <stdlib.h>
 
-
+template <class object>
 class TreeNode
 {
 private:
-	int* obj;
+	object* obj;
 	TreeNode* left;
 	TreeNode* right;
 public:
 	TreeNode();
-	TreeNode(int*);
-	int* getinfo();
-	void setinfo(int*);
+	TreeNode(object*);
+	object* getinfo();
+	void setinfo(object*);
 	TreeNode* getleft();
 	void setleft(TreeNode*);
 	TreeNode* getright();
