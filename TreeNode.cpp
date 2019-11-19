@@ -1,56 +1,56 @@
 #include "TreeNode.h"
-
-TreeNode::TreeNode()
+template <class object>
+TreeNode<object>::TreeNode()
 {
-	this->obj = 0;
+	this->obj = NULL;
 	this->left = this->right = NULL;
 }
 
-
-TreeNode::TreeNode(int* obj)
+template <class object>
+TreeNode<object>::TreeNode(object* obj)
 {
 	this->obj = obj;
 	this->left = this->right = NULL;
 }
 
-
-int* TreeNode::getinfo()
+template <class object>
+object* TreeNode<object>::getinfo()
 {
 	return this->obj;
 }
 
-
-void TreeNode::setinfo(int* obj)
+template <class object>
+void TreeNode<object>::setinfo(object* obj)
 {
 	this->obj = obj;
 }
 
-
-TreeNode* TreeNode::getleft()
+template <class object>
+TreeNode<object>* TreeNode<object>::getleft()
 {
 	return left;
 }
 
-
-void TreeNode::setleft(TreeNode* left)
+template <class object>
+void TreeNode<object>::setleft(TreeNode* left)
 {
 	this->left = left;
 }
 
-
-TreeNode* TreeNode::getright()
+template <class object>
+TreeNode<object>* TreeNode<object>::getright()
 {
 	return right;
 }
 
-
-void TreeNode::setright(TreeNode* right)
+template <class object>
+void TreeNode<object>::setright(TreeNode* right)
 {
 	this->right = right;
 }
 
-
-int TreeNode::isleaf()
+template <class object>
+int TreeNode<object>::isleaf()
 {
 	if (this->left == NULL && this->right == NULL)
 	{
