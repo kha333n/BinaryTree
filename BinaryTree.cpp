@@ -2,10 +2,10 @@
 //
 
 #include <iostream>
-#include "TreeNode.cpp"
+#include "TreeNode.h"
 using namespace std;
 
-void insert(TreeNode<int>*, int*);
+void insert(TreeNode*, int*);
 
 int main()
 {
@@ -14,20 +14,21 @@ int main()
 	{
 		x[i] = rand();
 	}
-	TreeNode<int>* root = new TreeNode<int>();
+	TreeNode* root = new TreeNode();
 	root->setinfo(&x[0]);
 	for (int i = 1; x[i] > 0; i++)
 	{
 		insert(root, &x[i]);
 	}
+
 }
 
 
 
-void insert(TreeNode<int>* root, int* info)
+void insert(TreeNode* root, int* info)
 {
-	TreeNode<int>* node = new TreeNode<int>(info);
-	TreeNode<int>* p, * q;
+	TreeNode* node = new TreeNode(info);
+	TreeNode* p, * q;
 	p = q = root;
 
 	while (*info != *(p->getinfo()) && q != NULL)
