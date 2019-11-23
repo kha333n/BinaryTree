@@ -13,6 +13,23 @@ TreeNode<object>::TreeNode(object* obj)
 	this->left = this->right = NULL;
 }
 
+template<class object>
+TreeNode<object>::~TreeNode()
+{
+}
+
+template<class object>
+void TreeNode<object>::setRoot(TreeNode<object> arg)
+{
+	root = arg;
+}
+
+template<class object>
+TreeNode<object>* TreeNode<object>::getRoot()
+{
+	return root;
+}
+
 template <class object>
 object* TreeNode<object>::getinfo()
 {

@@ -1,34 +1,25 @@
-// BinaryTree.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+#include "BinaryTree.h"
 
-#include <iostream>
-#include "TreeNode.cpp"
-using namespace std;
 
-void insert(TreeNode<int>*, int*);
 
-int main()
+template<class T>
+BinaryTree<T>::BinaryTree(T *obj)
 {
-	int x[50000];
-	for (int i = 0; i < 50000; i++)
-	{
-		x[i] = rand();
-	}
-	TreeNode<int>* root = new TreeNode<int>();
-	root->setinfo(&x[0]);
-	for (int i = 1; x[i] > 0; i++)
-	{
-		insert(root, &x[i]);
-	}
+	BT = new TreeNode<T>(obj);
 }
 
+template<class T>
+BinaryTree<T>::~BinaryTree()
+{
+	delete BT;
+}
 
-
-void insert(TreeNode<int>* root, int* info)
+template <class T>
+void BinaryTree<T>::insert(T* info)
 {
 	TreeNode<int>* node = new TreeNode<int>(info);
 	TreeNode<int>* p, * q;
-	p = q = root;
+	p = q = BT;
 
 	while (*info != *(p->getinfo()) && q != NULL)
 	{
@@ -45,7 +36,7 @@ void insert(TreeNode<int>* root, int* info)
 
 	if (*info == *(p->getinfo()))
 	{
-		cout << "Attempt to insert duplicate: " << *info << endl;
+		std::cout << "Attempt to insert duplicate: " << *info << std::endl;
 		delete node;
 	}
 
@@ -58,15 +49,90 @@ void insert(TreeNode<int>* root, int* info)
 		p->setright(node);
 	}
 }
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+template <class T>
+void BinaryTree<T>::find(T info) const
+{
+	TreeNode<int>* p, * q;
+	p = q = BT;
+
+	while (info != *p->getinfo() && q != NULL)
+	{
+		p = q;
+		if (info < *p->getinfo())
+		{
+			q = p->getleft();
+		}
+		else
+		{
+			q = p->getright();
+		}
+	}
+
+	if (*p->getinfo() == info)
+	{
+		std::cout << "Found: " << p->getinfo() << std::endl;
+	}
+	else
+	{
+		std::cout << "Cannot Find..." << std::endl;
+	}
+}
+
+template<class T>
+void BinaryTree<T>::preorder()
+{
+	BT->setRoot(BT);
+	preorderRecersive(BT);
+	BT = BT->getRoot();
+}
+
+template<class T>
+void BinaryTree<T>::inorder()
+{
+	BT->setRoot(BT);
+	inorderRecersive(BT);
+	BT = BT->getRoot();
+}
+
+template<class T>
+void BinaryTree<T>::postorder()
+{
+	BT->setRoot(BT);
+	postorderRecersive(BT);
+	BT = BT->getRoot();
+}
 
 
+template <class T>
+void BinaryTree<T>::preorderRecersive(TreeNode<T>* temp) const
+{
+	if (temp != NULL)
+	{
+		std::cout << temp->getinfo() << " ";
+		preorderRecersive(temp->getleft());
+		preorderRecersive(temp->getright());
+	}
+}
+
+template <class T>
+void BinaryTree<T>::inorderRecersive(TreeNode<T>* temp) const
+{
+	if (temp != NULL)
+	{
+		inorderRecersive(temp->getleft());
+		std::cout << *(temp->getinfo()) << " ";
+		inorderRecersive(temp->getright());
+	}
+}
+
+template <class T>
+void BinaryTree<T>::postorderRecersive(TreeNode<T>* temp) const
+{
+	if (temp != NULL)
+	{
+		postorderRecersive(temp->getleft());
+		postorderRecersive(temp->getright());
+		std::cout << temp->getinfo() << " ";
+	}
+}
